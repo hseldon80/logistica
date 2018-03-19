@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">Ricerca Prodotti</h3>	
+			
+			<p:focus for="articolo"/>  
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+			
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+	                	
+						<p:outputLabel styleClass="testo" value="Ricerca"/>
+						<p:inputText id="articolo" 
+    							value="#{RicercaProdotti.codArticolo}" />
+
+					</p:panelGrid>
+  					<p:panelGrid columns="1" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+  						<p:commandButton value="Ricerca" id="ajax" update="tabellaindividuale" actionListener="#{RicercaProdotti.buttonRicerca}" styleClass="bottone" />	
+  					</p:panelGrid>
+  					
+  					<h:panelGrid id="tabellaindividuale" columns="1" cellpadding="5" >		     
+					<p:dataTable reflow="true" rows="100" style="margin-top:20px" 
+								id="individuale" var="lista" value="#{RicercaProdotti.lstArticoli}" >
+					        <f:facet name="header">
+					           		 Elenco articoli presenti in magazzino
+					        </f:facet>
+					        <p:column headerText="Codice" sortBy="#{lista.codice}>" >
+					            <h:outputText value="#{lista.codice}" />
+					        </p:column>
+					 
+					        <p:column headerText="Descrizione" sortBy="#{lista.descrizione}" >
+					            <h:outputText value="#{lista.descrizione}" />
+					        </p:column>
+					 
+					        <p:column headerText="Giacenza" style="width:90px;text-align: right" sortBy="#{lista.qta}" >
+					            <h:outputText value="#{lista.qta}" style="text-align: right" />
+					        </p:column>
+					        
+				    </p:dataTable>	
+			 		</h:panelGrid>  	
+				 </p:fieldset>
+		</h:form>
+	 </ui:define>
+</ui:composition>

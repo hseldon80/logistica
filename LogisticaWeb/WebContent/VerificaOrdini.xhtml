@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">I miei ordini</h3>	
+			
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+					<p:panelGrid columns="4" layout="grid" columnClasses="ui-grid-col-2,ui-grid-col-2" styleClass="ui-panelgrid-blank ui-fluid">
+	                		<p:outputLabel styleClass="testo" value="Ragione Sociale:"/>
+							<p:outputLabel styleClass="testo" value="#{SessionBean1.ragionesociale}" />
+		                	
+		                	<p:outputLabel styleClass="testo" value="Partita IVA/CF:"/>
+							<p:outputLabel styleClass="testo" value="#{SessionBean1.piva}" />
+					</p:panelGrid>
+					<p:panelGrid columns="4" layout="grid" columnClasses="ui-grid-col-2,ui-grid-col-2" styleClass="ui-panelgrid-blank ui-fluid">
+								
+								<p:outputLabel styleClass="testo" value="Periodo"/>
+	        					<p:selectOneMenu styleClass="combo" id="periodo" value="#{VerificaOrdini.periodo}" style="width:150px">
+					                <f:selectItem itemLabel="Tutti" itemValue="T" />
+					                <f:selectItem itemLabel="Mese corrente" itemValue="MC" />
+					                <f:selectItem itemLabel="Mese precedente" itemValue="MP" />
+					                <f:selectItem itemLabel="Anno corrente" itemValue="AC" />
+					            </p:selectOneMenu>
+	        					
+	        					<p:outputLabel styleClass="testo" value="Stato"/>
+								<p:selectOneMenu styleClass="combo" id="stato" value="#{VerificaOrdini.stato}" style="width:150px">
+					                <f:selectItem itemLabel="Tutti" itemValue="" />
+					                <f:selectItem itemLabel="Attesa" itemValue="A" />
+					                <f:selectItem itemLabel="Spedito" itemValue="S" />
+					                <f:selectItem itemLabel="In transito" itemValue="T" />
+					                <f:selectItem itemLabel="Consegnato" itemValue="C" />
+					            </p:selectOneMenu>
+					            
+					            <p:commandButton id="ajax" update="tabellaindividuale" styleClass="bottone" title="Ricerca" actionListener="#{VerificaOrdini.buttonRicerca}" />
+					</p:panelGrid>
+
+  					<h:panelGrid id="tabellaindividuale" columns="1" cellpadding="5" style="width:100%">		     
+						
+						<p:dataGrid layout="grid" id="individuale" var="lista" value="#{VerificaOrdini.lstOrdini}" 
+									columns="1" rows="1000" paginator="false" >
+							
+							<h:panelGrid columns="2">
+						  		<p:panel>   
+		            	 			<h:panelGrid columns="2"> 
+		            					<h:outputText value="Data:" />
+							         	<h:outputText value="#{lista.ordData}" >
+								         	<f:convertDateTime pattern="dd-MM-yyyy" />
+									     </h:outputText>
+		            			 	</h:panelGrid> 
+		            			 	<p:dataGrid layout="grid" id="dettaglio" var="listaArticoli" value="#{lista.articoli}" 
+										columns="2" rows="1000" >
+
+										<h:outputText value="#{listaArticoli.artDescrizione}" />
+										<h:outputText value="#{listaArticoli.artQta}" />
+
+									 </p:dataGrid>
+		        		 		</p:panel> 
+	
+						  		<p:panel>   
+		            	 			<h:panelGrid columns="2" > 
+										<h:outputText value="Stato:" />
+							            <h:outputText converter="statoConverter" value="#{lista.ordStato}" />
+							            
+							            <h:outputText value="Corriere:" />
+							            <h:outputText  converter="corriereConverter" value="#{lista.corId}" />
+							            
+							           	<h:outputLink rendered="#{lista.ordStato.equals('T')}" value="#{lista.corUrl}" target="_blank" >Traccia il mio ordine</h:outputLink>
+										<h:outputText rendered="#{lista.ordStato.equals('T')}" value="" />
+							           
+							            <p:commandButton rendered="#{lista.ordStato.equals('T')}" update="individuale" value="Consegnato" actionListener="#{VerificaOrdini.buttonSalvaDettaglio(lista)}" />
+							            <h:outputText rendered="#{lista.ordStato.equals('T')}" value="" />
+							            
+		            			 	</h:panelGrid>  
+		        		 		</p:panel> 
+							</h:panelGrid>
+												        
+					    </p:dataGrid>	
+				    
+			 		</h:panelGrid>  	
+			 </p:fieldset>
+			 
+		</h:form>
+	 </ui:define>
+</ui:composition>

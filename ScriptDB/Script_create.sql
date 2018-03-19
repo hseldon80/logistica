@@ -1,4 +1,8 @@
-create sequente -
+create sequence seq_anagrafiche INCREMENT 1  START 1;
+create sequence seq_movimenti INCREMENT 1  START 1;
+create sequence seq_ordini INCREMENT 1  START 1;
+create sequence seq_articoli INCREMENT 1  START 1;
+
 
 -- Generato da Oracle SQL Developer Data Modeler 17.4.0.355.2121
 --   in:        2018-03-02 11:20:19 CET
@@ -6,10 +10,11 @@ create sequente -
 --   tipo:      Oracle Database 12c
 
 CREATE TABLE anagrafica (
-    ana_id                INTEGER NOT NULL,
+    ana_id                NUMERIC(10) NOT NULL,
     ana_ragione_sociale   varchar(255) NOT NULL,
     ana_tipologia         varchar(1) NOT NULL,
-    ana_agg_dt            DATE
+    ana_agg_dt            DATE,
+    ana_cf_piva				  varchar(16) 
 );
 
 ALTER TABLE anagrafica
@@ -22,7 +27,7 @@ ALTER TABLE anagrafica
 ALTER TABLE anagrafica ADD CONSTRAINT anagrafica_pk PRIMARY KEY ( ana_id );
 
 CREATE TABLE articolo (
-    art_id            INTEGER NOT NULL,
+    art_id            NUMERIC(10) NOT NULL,
     art_codice        varchar(20) NOT NULL,
     art_descrizione   varchar(255) NOT NULL,
     art_barcode       varchar(50),
@@ -33,8 +38,8 @@ CREATE TABLE articolo (
 ALTER TABLE articolo ADD CONSTRAINT articolo_pk PRIMARY KEY ( art_id );
 
 CREATE TABLE corrieri (
-    cod_id              INTEGER NOT NULL,
-    cod_nominativo      varchar(100) NOT NULL,
+    cor_id              NUMERIC(10) NOT NULL,
+    cor_nominativo      varchar(100) NOT NULL,
     cor_url_tracking    varchar(255),
     cor_abil_tracking   numeric(1) NOT NULL
 );
@@ -45,14 +50,14 @@ ALTER TABLE corrieri
         1
     ) );
 
-ALTER TABLE corrieri ADD CONSTRAINT corrieri_pk PRIMARY KEY ( cod_id );
+ALTER TABLE corrieri ADD CONSTRAINT corrieri_pk PRIMARY KEY ( cor_id );
 
 CREATE TABLE movimentazioni (
-    mov_id              INTEGER NOT NULL,
+    mov_id              NUMERIC(10) NOT NULL,
     mov_data            DATE NOT NULL,
     mov_ora             varchar(5) NOT NULL,
     mov_tipo            varchar(1) NOT NULL,
-    anagrafica_ana_id   INTEGER NOT NULL
+    anagrafica_ana_id   NUMERIC(10) 
 );
 
 ALTER TABLE movimentazioni
@@ -64,39 +69,39 @@ ALTER TABLE movimentazioni
 ALTER TABLE movimentazioni ADD CONSTRAINT movimentazioni_pk PRIMARY KEY ( mov_id );
 
 CREATE TABLE movimentazioni_articoli (
-    mvd_id                  INTEGER NOT NULL,
+    mvd_id                  NUMERIC(10) NOT NULL,
     mvd_qta                 numeric(7) NOT NULL,
-    articolo_art_id         INTEGER NOT NULL,
-    movimentazioni_mov_id   INTEGER NOT NULL
+    articolo_art_id         NUMERIC(10) NOT NULL,
+    movimentazioni_mov_id   NUMERIC(10) NOT NULL
 );
 
 ALTER TABLE movimentazioni_articoli ADD CONSTRAINT movimentazioni_articoli_pk PRIMARY KEY ( mvd_id );
 
 CREATE TABLE ordini (
-    ord_id              INTEGER NOT NULL,
+    ord_id              NUMERIC(10) NOT NULL,
     ord_data            DATE NOT NULL,
     ord_numero          varchar(20) NOT NULL,
     ord_sped_data       DATE,
     ord_spe_numero      varchar(50),
     ord_stato           varchar(1),
-    anagrafica_ana_id   INTEGER NOT NULL,
-    corrieri_cod_id     INTEGER NOT NULL,
+    anagrafica_ana_id   NUMERIC(10) NOT NULL,
+    corrieri_cor_id     NUMERIC(10),
     ord_consegnato      DATE
 );
 
 ALTER TABLE ordini ADD CONSTRAINT ordini_pk PRIMARY KEY ( ord_id );
 
 CREATE TABLE ordini_articoli (
-    ode_id            INTEGER NOT NULL,
+    ode_id            NUMERIC(10) NOT NULL,
     ode_qta           numeric(5) NOT NULL,
-    ordini_ord_id     INTEGER NOT NULL,
-    articolo_art_id   INTEGER NOT NULL
+    ordini_ord_id     NUMERIC(10) NOT NULL,
+    articolo_art_id   NUMERIC(10) NOT NULL
 );
 
 ALTER TABLE ordini_articoli ADD CONSTRAINT ordini_articoli_pk PRIMARY KEY ( ode_id );
 
 CREATE TABLE utente (
-    ute_it           INTEGER NOT NULL,
+    ute_id           NUMERIC(10) NOT NULL,
     ute_nominativo   varchar(50) NOT NULL,
     ute_email        varchar(100) NOT NULL,
     ute_password     varchar(255),
@@ -107,7 +112,7 @@ CREATE TABLE utente (
     ute_tentativi    numeric(2)
 );
 
-ALTER TABLE utente ADD CONSTRAINT utente_pk PRIMARY KEY ( ute_it );
+ALTER TABLE utente ADD CONSTRAINT utente_pk PRIMARY KEY ( ute_id );
 
 ALTER TABLE movimentazioni
     ADD CONSTRAINT movimentazioni_anagrafica_fk FOREIGN KEY ( anagrafica_ana_id )
@@ -136,6 +141,6 @@ ALTER TABLE ordini_articoli
         REFERENCES ordini ( ord_id );
 
 ALTER TABLE ordini
-    ADD CONSTRAINT ordini_corrieri_fk FOREIGN KEY ( corrieri_cod_id )
-        REFERENCES corrieri ( cod_id );
+    ADD CONSTRAINT ordini_corrieri_fk FOREIGN KEY ( corrieri_cor_id )
+        REFERENCES corrieri ( cor_id );
 

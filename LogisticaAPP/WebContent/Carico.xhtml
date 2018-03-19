@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+	<h:form id="form">
+				
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">Carico</h3>	
+			
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+			
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+	                	
+	                	<p:outputLabel styleClass="testo" value="Fornitore"/>
+	                	<p:selectOneMenu id="combocli" value="#{Carico.clienteFk}" styleClass="combo" filter="true" filterMatchMode="contains" >
+            				<f:selectItems value="#{Carico.combocliente}" />
+        				</p:selectOneMenu>
+						
+						<p:outputLabel styleClass="testo" value="Data"/>
+        				<p:calendar id="data" value="#{Carico.data}" mask="true" pattern="dd/MM/yyyy" styleClass="data">
+        				</p:calendar>
+
+						<p:outputLabel styleClass="testo" value="Articolo"/>
+	                	<p:selectOneMenu id="comboart" value="#{Carico.articoloFk}" styleClass="combo" filter="true" filterMatchMode="contains" >
+            				<f:selectItems value="#{Carico.comboarticolo}" />
+        				</p:selectOneMenu>
+    
+    	                <p:outputLabel styleClass="testo" value="Quantità"/>
+	                	<p:spinner id="qta" value="#{Carico.qta}" min="1" max="100"  />
+    
+					</p:panelGrid>
+  					
+  					
+			 </p:fieldset>
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						
+					    <p:commandButton id="annulla" styleClass="bottone" title="Home" action="home" />					           
+        	        	<p:commandButton id="salva" ajax="false" styleClass="bottone" title="Salva e stampa etichette"  actionListener="#{Carico.buttonSalva}" />
+
+					</p:panelGrid>
+			 
+			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>	
+			 
+		</h:form>
+	 </ui:define>
+</ui:composition>

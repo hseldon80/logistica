@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">Scarico</h3>	
+			
+			<p:focus for="articolo"/>  
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+			
+					<p:remoteCommand name="test" actionListener="#{Scarico.testEnter}" update="tabellaindividuale articolo"/>
+
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+	                	
+	                	<p:outputLabel styleClass="testo" value="Cliente"/>
+	                	<p:selectOneMenu id="combocli" value="#{Scarico.clienteFk}" styleClass="combo" filter="true" filterMatchMode="contains" >
+            				<f:selectItems value="#{Scarico.combocliente}" />
+        				</p:selectOneMenu>
+						
+						<p:outputLabel styleClass="testo" value="Data"/>
+        				<p:calendar id="data" value="#{Scarico.data}" mask="true" pattern="dd/MM/yyyy" styleClass="data">
+        				</p:calendar>
+
+						<p:outputLabel styleClass="testo" value="Articolo"/>
+						
+						<p:inputText id="articolo"
+    							value="#{Scarico.codArticolo}"
+    							onkeypress="if (event.keyCode == 13) { test(); return false; }" 
+    							update="tabellaindividuale" >
+						</p:inputText>
+    
+					</p:panelGrid>
+  					
+  					<h:panelGrid id="tabellaindividuale" columns="1" cellpadding="5" >		     
+					<p:dataTable reflow="true" rows="100" style="margin-top:20px" 
+								id="individuale" var="lista" value="#{Scarico.lstArticoli}" >
+					        <f:facet name="header">
+					           		 Elenco articoli in uscita
+					        </f:facet>
+					        <p:column headerText="Codice">
+					            <h:outputText value="#{lista.codice}" />
+					        </p:column>
+					 
+					        <p:column headerText="Descrizione">
+					            <h:outputText value="#{lista.descrizione}" />
+					        </p:column>
+					 
+					        <p:column headerText="Q.ta" style="width:70px;text-align: right">
+					            <h:outputText value="#{lista.qta}" style="text-align: right" />
+					        </p:column>
+					        
+					        <p:column headerText="" style="width:70px;text-align: center">
+					            <p:commandButton styleClass="bottone" icon="ui-icon-plusthick" update="individuale" actionListener="#{Scarico.buttonQta(lista, 'A')}" />
+					            <p:commandButton styleClass="bottone" icon="ui-icon-minusthick" update="individuale" actionListener="#{Scarico.buttonQta(lista, 'S')}" />
+					        </p:column>
+					 
+					        <p:column headerText="Elimina" style="width:70px;text-align: center">
+					            <p:commandButton styleClass="bottone" icon="ui-icon-closethick" title="Elimina" update="individuale" actionListener="#{Scarico.buttonDelete(lista)}"> 
+					             	<p:confirm header="Conferma" message="Sei sicuro di voler cancellare?" icon="ui-icon-alert" />
+					            </p:commandButton>					           				           
+					        </p:column>
+					        
+				    </p:dataTable>	
+			 		</h:panelGrid>  	
+			 </p:fieldset>
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						
+					    <p:commandButton id="annulla" styleClass="bottone" title="Home" action="home" />					           
+        	        	<p:commandButton ajax="false" id="salva" styleClass="bottone" title="Salva" actionListener="#{Scarico.buttonSalva}" />
+        	        	
+					</p:panelGrid>
+			 
+			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>	
+			 
+		</h:form>
+	 </ui:define>
+</ui:composition>

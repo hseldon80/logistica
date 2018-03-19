@@ -1,0 +1,1965 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<firestorm-project version="4.0.1">
+  <name>logistica</name>
+  <description />
+  <dbimport-config>
+    <jdbc-datasource>Postgres Datasource</jdbc-datasource>
+    <jdbc-catalog>logistica</jdbc-catalog>
+    <jdbc-schema>public</jdbc-schema>
+    <sql-import-file />
+    <sql-vendor />
+    <import-tables>true</import-tables>
+    <import-views>true</import-views>
+    <import-procedures>true</import-procedures>
+    <prefer-objects>false</prefer-objects>
+    <sync-new>true</sync-new>
+    <sync-existing>true</sync-existing>
+    <sync-deleted>true</sync-deleted>
+    <map-large-integer-to-bigdecimal>false</map-large-integer-to-bigdecimal>
+    <verbose-logging>false</verbose-logging>
+    <filter-list>
+      <filter>anagrafica</filter>
+      <filter>articolo</filter>
+      <filter>corrieri</filter>
+      <filter>movimentazioni</filter>
+      <filter>movimentazioni_articoli</filter>
+      <filter>ordini</filter>
+      <filter>ordini_articoli</filter>
+      <filter>utente</filter>
+    </filter-list>
+  </dbimport-config>
+  <database>
+    <platform>PostgreSQL</platform>
+    <catalog-name>logistica</catalog-name>
+    <schema-name>public</schema-name>
+    <table-list>
+      <table>
+        <sql-name>anagrafica</sql-name>
+        <java-name>Anagrafica</java-name>
+        <primary-key>
+          <column-list>
+            <column>ana_id</column>
+          </column-list>
+        </primary-key>
+        <column-list>
+          <column>
+            <java-name>anaId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>ana_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>anaRagioneSociale</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ana_ragione_sociale</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>255</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>anaTipologia</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ana_tipologia</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>1</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>anaAggDt</java-name>
+            <java-type>java.util.Date</java-type>
+            <java-default-value />
+            <sql-name>ana_agg_dt</sql-name>
+            <sql-type>date</sql-type>
+            <jdbc-type>DATE</jdbc-type>
+            <jdbc-precision>13</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>anaCfPiva</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ana_cf_piva</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>16</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>ana_id = :anaId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anaId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>ana_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findWhereAnaIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ana_id = :anaId</where>
+            <order-by>ana_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anaId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereAnaRagioneSocialeEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ana_ragione_sociale = :anaRagioneSociale</where>
+            <order-by>ana_ragione_sociale</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anaRagioneSociale</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>255</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereAnaTipologiaEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ana_tipologia = :anaTipologia</where>
+            <order-by>ana_tipologia</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anaTipologia</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>1</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereAnaAggDtEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ana_agg_dt = :anaAggDt</where>
+            <order-by>ana_agg_dt</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anaAggDt</java-name>
+                <java-type>java.util.Date</java-type>
+                <jdbc-type>DATE</jdbc-type>
+                <jdbc-precision>13</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereAnaCfPivaEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ana_cf_piva = :anaCfPiva</where>
+            <order-by>ana_cf_piva</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anaCfPiva</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>16</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+      <table>
+        <sql-name>articolo</sql-name>
+        <java-name>Articolo</java-name>
+        <primary-key>
+          <column-list>
+            <column>art_id</column>
+          </column-list>
+        </primary-key>
+        <column-list>
+          <column>
+            <java-name>artId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>art_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>artCodice</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>art_codice</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>20</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>artDescrizione</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>art_descrizione</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>255</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>artBarcode</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>art_barcode</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>50</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>artGiacenza</java-name>
+            <java-type>int</java-type>
+            <java-default-value />
+            <sql-name>art_giacenza</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>7</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>artAggDt</java-name>
+            <java-type>java.util.Date</java-type>
+            <java-default-value />
+            <sql-name>art_agg_dt</sql-name>
+            <sql-type>date</sql-type>
+            <jdbc-type>DATE</jdbc-type>
+            <jdbc-precision>13</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>art_id = :artId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>artId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>art_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findWhereArtIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>art_id = :artId</where>
+            <order-by>art_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>artId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereArtCodiceEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>art_codice = :artCodice</where>
+            <order-by>art_codice</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>artCodice</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>20</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereArtDescrizioneEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>art_descrizione = :artDescrizione</where>
+            <order-by>art_descrizione</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>artDescrizione</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>255</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereArtBarcodeEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>art_barcode = :artBarcode</where>
+            <order-by>art_barcode</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>artBarcode</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>50</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereArtGiacenzaEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>art_giacenza = :artGiacenza</where>
+            <order-by>art_giacenza</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>artGiacenza</java-name>
+                <java-type>int</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>7</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereArtAggDtEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>art_agg_dt = :artAggDt</where>
+            <order-by>art_agg_dt</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>artAggDt</java-name>
+                <java-type>java.util.Date</java-type>
+                <jdbc-type>DATE</jdbc-type>
+                <jdbc-precision>13</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+      <table>
+        <sql-name>corrieri</sql-name>
+        <java-name>Corrieri</java-name>
+        <primary-key>
+          <column-list>
+            <column>cor_id</column>
+          </column-list>
+        </primary-key>
+        <column-list>
+          <column>
+            <java-name>corId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>cor_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>corNominativo</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>cor_nominativo</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>100</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>corUrlTracking</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>cor_url_tracking</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>255</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>corAbilTracking</java-name>
+            <java-type>int</java-type>
+            <java-default-value />
+            <sql-name>cor_abil_tracking</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>1</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>cor_id = :corId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>corId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>cor_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findWhereCorIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>cor_id = :corId</where>
+            <order-by>cor_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>corId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereCorNominativoEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>cor_nominativo = :corNominativo</where>
+            <order-by>cor_nominativo</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>corNominativo</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>100</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereCorUrlTrackingEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>cor_url_tracking = :corUrlTracking</where>
+            <order-by>cor_url_tracking</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>corUrlTracking</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>255</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereCorAbilTrackingEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>cor_abil_tracking = :corAbilTracking</where>
+            <order-by>cor_abil_tracking</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>corAbilTracking</java-name>
+                <java-type>int</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>1</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+      <table>
+        <sql-name>movimentazioni</sql-name>
+        <java-name>Movimentazioni</java-name>
+        <primary-key>
+          <column-list>
+            <column>mov_id</column>
+          </column-list>
+        </primary-key>
+        <foreign-key-list>
+          <foreign-key>
+            <name>movimentazioni_anagrafica_fk</name>
+            <parent-table>anagrafica</parent-table>
+            <cardinality>1-many</cardinality>
+            <nav-to-parent-term>Anagrafica</nav-to-parent-term>
+            <nav-to-child-term>Movimentazioni</nav-to-child-term>
+            <nav-to-parent>true</nav-to-parent>
+            <nav-to-child>false</nav-to-child>
+            <column-list>
+              <column>
+                <column-name>anagrafica_ana_id</column-name>
+                <ref-column-name>ana_id</ref-column-name>
+              </column>
+            </column-list>
+          </foreign-key>
+        </foreign-key-list>
+        <column-list>
+          <column>
+            <java-name>movId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>mov_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>movData</java-name>
+            <java-type>java.util.Date</java-type>
+            <java-default-value />
+            <sql-name>mov_data</sql-name>
+            <sql-type>date</sql-type>
+            <jdbc-type>DATE</jdbc-type>
+            <jdbc-precision>13</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>movOra</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>mov_ora</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>5</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>movTipo</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>mov_tipo</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>1</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>anagraficaAnaId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>anagrafica_ana_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>mov_id = :movId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>movId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>mov_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findByAnagrafica</name>
+            <multi-finder>true</multi-finder>
+            <where>anagrafica_ana_id = :anagraficaAnaId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anagraficaAnaId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereMovIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>mov_id = :movId</where>
+            <order-by>mov_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>movId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereMovDataEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>mov_data = :movData</where>
+            <order-by>mov_data</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>movData</java-name>
+                <java-type>java.util.Date</java-type>
+                <jdbc-type>DATE</jdbc-type>
+                <jdbc-precision>13</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereMovOraEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>mov_ora = :movOra</where>
+            <order-by>mov_ora</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>movOra</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>5</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereMovTipoEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>mov_tipo = :movTipo</where>
+            <order-by>mov_tipo</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>movTipo</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>1</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereAnagraficaAnaIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>anagrafica_ana_id = :anagraficaAnaId</where>
+            <order-by>anagrafica_ana_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anagraficaAnaId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+      <table>
+        <sql-name>movimentazioni_articoli</sql-name>
+        <java-name>MovimentazioniArticoli</java-name>
+        <primary-key>
+          <column-list>
+            <column>mvd_id</column>
+          </column-list>
+        </primary-key>
+        <foreign-key-list>
+          <foreign-key>
+            <name>movimentazioni_articoli_articolo_fk</name>
+            <parent-table>articolo</parent-table>
+            <cardinality>1-many</cardinality>
+            <nav-to-parent-term>Articolo</nav-to-parent-term>
+            <nav-to-child-term>MovimentazioniArticoli</nav-to-child-term>
+            <nav-to-parent>true</nav-to-parent>
+            <nav-to-child>false</nav-to-child>
+            <column-list>
+              <column>
+                <column-name>articolo_art_id</column-name>
+                <ref-column-name>art_id</ref-column-name>
+              </column>
+            </column-list>
+          </foreign-key>
+          <foreign-key>
+            <name>movimentazioni_articoli_movimentazioni_fk</name>
+            <parent-table>movimentazioni</parent-table>
+            <cardinality>1-many</cardinality>
+            <nav-to-parent-term>Movimentazioni</nav-to-parent-term>
+            <nav-to-child-term>MovimentazioniArticoli1</nav-to-child-term>
+            <nav-to-parent>true</nav-to-parent>
+            <nav-to-child>false</nav-to-child>
+            <column-list>
+              <column>
+                <column-name>movimentazioni_mov_id</column-name>
+                <ref-column-name>mov_id</ref-column-name>
+              </column>
+            </column-list>
+          </foreign-key>
+        </foreign-key-list>
+        <column-list>
+          <column>
+            <java-name>mvdId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>mvd_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>mvdQta</java-name>
+            <java-type>int</java-type>
+            <java-default-value />
+            <sql-name>mvd_qta</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>7</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>articoloArtId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>articolo_art_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>movimentazioniMovId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>movimentazioni_mov_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>mvd_id = :mvdId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>mvdId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>mvd_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findByArticolo</name>
+            <multi-finder>true</multi-finder>
+            <where>articolo_art_id = :articoloArtId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>articoloArtId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findByMovimentazioni</name>
+            <multi-finder>true</multi-finder>
+            <where>movimentazioni_mov_id = :movimentazioniMovId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>movimentazioniMovId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereMvdIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>mvd_id = :mvdId</where>
+            <order-by>mvd_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>mvdId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereMvdQtaEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>mvd_qta = :mvdQta</where>
+            <order-by>mvd_qta</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>mvdQta</java-name>
+                <java-type>int</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>7</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereArticoloArtIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>articolo_art_id = :articoloArtId</where>
+            <order-by>articolo_art_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>articoloArtId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereMovimentazioniMovIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>movimentazioni_mov_id = :movimentazioniMovId</where>
+            <order-by>movimentazioni_mov_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>movimentazioniMovId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+      <table>
+        <sql-name>ordini</sql-name>
+        <java-name>Ordini</java-name>
+        <primary-key>
+          <column-list>
+            <column>ord_id</column>
+          </column-list>
+        </primary-key>
+        <foreign-key-list>
+          <foreign-key>
+            <name>ordini_anagrafica_fk</name>
+            <parent-table>anagrafica</parent-table>
+            <cardinality>1-many</cardinality>
+            <nav-to-parent-term>Anagrafica</nav-to-parent-term>
+            <nav-to-child-term>Ordini</nav-to-child-term>
+            <nav-to-parent>true</nav-to-parent>
+            <nav-to-child>false</nav-to-child>
+            <column-list>
+              <column>
+                <column-name>anagrafica_ana_id</column-name>
+                <ref-column-name>ana_id</ref-column-name>
+              </column>
+            </column-list>
+          </foreign-key>
+          <foreign-key>
+            <name>ordini_corrieri_fk</name>
+            <parent-table>corrieri</parent-table>
+            <cardinality>1-many</cardinality>
+            <nav-to-parent-term>Corrieri</nav-to-parent-term>
+            <nav-to-child-term>Ordini1</nav-to-child-term>
+            <nav-to-parent>true</nav-to-parent>
+            <nav-to-child>false</nav-to-child>
+            <column-list>
+              <column>
+                <column-name>corrieri_cor_id</column-name>
+                <ref-column-name>cor_id</ref-column-name>
+              </column>
+            </column-list>
+          </foreign-key>
+        </foreign-key-list>
+        <column-list>
+          <column>
+            <java-name>ordId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>ord_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>ordData</java-name>
+            <java-type>java.util.Date</java-type>
+            <java-default-value />
+            <sql-name>ord_data</sql-name>
+            <sql-type>date</sql-type>
+            <jdbc-type>DATE</jdbc-type>
+            <jdbc-precision>13</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>ordNumero</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ord_numero</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>20</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>ordSpedData</java-name>
+            <java-type>java.util.Date</java-type>
+            <java-default-value />
+            <sql-name>ord_sped_data</sql-name>
+            <sql-type>date</sql-type>
+            <jdbc-type>DATE</jdbc-type>
+            <jdbc-precision>13</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>ordSpeNumero</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ord_spe_numero</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>50</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>ordStato</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ord_stato</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>1</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>anagraficaAnaId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>anagrafica_ana_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>corrieriCorId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>corrieri_cor_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>ordConsegnato</java-name>
+            <java-type>java.util.Date</java-type>
+            <java-default-value />
+            <sql-name>ord_consegnato</sql-name>
+            <sql-type>date</sql-type>
+            <jdbc-type>DATE</jdbc-type>
+            <jdbc-precision>13</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>ord_id = :ordId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>ord_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findByAnagrafica</name>
+            <multi-finder>true</multi-finder>
+            <where>anagrafica_ana_id = :anagraficaAnaId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anagraficaAnaId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findByCorrieri</name>
+            <multi-finder>true</multi-finder>
+            <where>corrieri_cor_id = :corrieriCorId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>corrieriCorId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ord_id = :ordId</where>
+            <order-by>ord_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdDataEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ord_data = :ordData</where>
+            <order-by>ord_data</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordData</java-name>
+                <java-type>java.util.Date</java-type>
+                <jdbc-type>DATE</jdbc-type>
+                <jdbc-precision>13</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdNumeroEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ord_numero = :ordNumero</where>
+            <order-by>ord_numero</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordNumero</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>20</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdSpedDataEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ord_sped_data = :ordSpedData</where>
+            <order-by>ord_sped_data</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordSpedData</java-name>
+                <java-type>java.util.Date</java-type>
+                <jdbc-type>DATE</jdbc-type>
+                <jdbc-precision>13</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdSpeNumeroEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ord_spe_numero = :ordSpeNumero</where>
+            <order-by>ord_spe_numero</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordSpeNumero</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>50</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdStatoEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ord_stato = :ordStato</where>
+            <order-by>ord_stato</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordStato</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>1</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereAnagraficaAnaIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>anagrafica_ana_id = :anagraficaAnaId</where>
+            <order-by>anagrafica_ana_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>anagraficaAnaId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereCorrieriCorIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>corrieri_cor_id = :corrieriCorId</where>
+            <order-by>corrieri_cor_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>corrieriCorId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdConsegnatoEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ord_consegnato = :ordConsegnato</where>
+            <order-by>ord_consegnato</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordConsegnato</java-name>
+                <java-type>java.util.Date</java-type>
+                <jdbc-type>DATE</jdbc-type>
+                <jdbc-precision>13</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+      <table>
+        <sql-name>ordini_articoli</sql-name>
+        <java-name>OrdiniArticoli</java-name>
+        <primary-key>
+          <column-list>
+            <column>ode_id</column>
+          </column-list>
+        </primary-key>
+        <foreign-key-list>
+          <foreign-key>
+            <name>ordini_articoli_articolo_fk</name>
+            <parent-table>articolo</parent-table>
+            <cardinality>1-many</cardinality>
+            <nav-to-parent-term>Articolo</nav-to-parent-term>
+            <nav-to-child-term>OrdiniArticoli</nav-to-child-term>
+            <nav-to-parent>true</nav-to-parent>
+            <nav-to-child>false</nav-to-child>
+            <column-list>
+              <column>
+                <column-name>articolo_art_id</column-name>
+                <ref-column-name>art_id</ref-column-name>
+              </column>
+            </column-list>
+          </foreign-key>
+          <foreign-key>
+            <name>ordini_articoli_ordini_fk</name>
+            <parent-table>ordini</parent-table>
+            <cardinality>1-many</cardinality>
+            <nav-to-parent-term>Ordini</nav-to-parent-term>
+            <nav-to-child-term>OrdiniArticoli1</nav-to-child-term>
+            <nav-to-parent>true</nav-to-parent>
+            <nav-to-child>false</nav-to-child>
+            <column-list>
+              <column>
+                <column-name>ordini_ord_id</column-name>
+                <ref-column-name>ord_id</ref-column-name>
+              </column>
+            </column-list>
+          </foreign-key>
+        </foreign-key-list>
+        <column-list>
+          <column>
+            <java-name>odeId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>ode_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>odeQta</java-name>
+            <java-type>int</java-type>
+            <java-default-value />
+            <sql-name>ode_qta</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>5</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>ordiniOrdId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>ordini_ord_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>articoloArtId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>articolo_art_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>ode_id = :odeId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>odeId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>ode_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findByArticolo</name>
+            <multi-finder>true</multi-finder>
+            <where>articolo_art_id = :articoloArtId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>articoloArtId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findByOrdini</name>
+            <multi-finder>true</multi-finder>
+            <where>ordini_ord_id = :ordiniOrdId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordiniOrdId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOdeIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ode_id = :odeId</where>
+            <order-by>ode_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>odeId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOdeQtaEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ode_qta = :odeQta</where>
+            <order-by>ode_qta</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>odeQta</java-name>
+                <java-type>int</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>5</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereOrdiniOrdIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ordini_ord_id = :ordiniOrdId</where>
+            <order-by>ordini_ord_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>ordiniOrdId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereArticoloArtIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>articolo_art_id = :articoloArtId</where>
+            <order-by>articolo_art_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>articoloArtId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+      <table>
+        <sql-name>utente</sql-name>
+        <java-name>Utente</java-name>
+        <primary-key>
+          <column-list>
+            <column>ute_id</column>
+          </column-list>
+        </primary-key>
+        <column-list>
+          <column>
+            <java-name>uteId</java-name>
+            <java-type>long</java-type>
+            <java-default-value />
+            <sql-name>ute_id</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>10</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>uteNominativo</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ute_nominativo</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>50</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>uteEmail</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ute_email</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>100</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>utePassword</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ute_password</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>255</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>uteCfPiva</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ute_cf_piva</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>16</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>uteProfilo</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ute_profilo</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>2</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>false</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>uteStato</java-name>
+            <java-type>java.lang.String</java-type>
+            <java-default-value />
+            <sql-name>ute_stato</sql-name>
+            <sql-type>varchar</sql-type>
+            <jdbc-type>VARCHAR</jdbc-type>
+            <jdbc-precision>1</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>uteLastLogin</java-name>
+            <java-type>java.util.Date</java-type>
+            <java-default-value />
+            <sql-name>ute_last_login</sql-name>
+            <sql-type>date</sql-type>
+            <jdbc-type>DATE</jdbc-type>
+            <jdbc-precision>13</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+          <column>
+            <java-name>uteTentativi</java-name>
+            <java-type>int</java-type>
+            <java-default-value />
+            <sql-name>ute_tentativi</sql-name>
+            <sql-type>numeric</sql-type>
+            <jdbc-type>NUMERIC</jdbc-type>
+            <jdbc-precision>2</jdbc-precision>
+            <jdbc-scale>0</jdbc-scale>
+            <nullable>true</nullable>
+            <unique>false</unique>
+            <auto-increment>false</auto-increment>
+            <sequence-name />
+          </column>
+        </column-list>
+        <finder-list>
+          <finder>
+            <name>findByPrimaryKey</name>
+            <multi-finder>false</multi-finder>
+            <where>ute_id = :uteId</where>
+            <order-by />
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findAll</name>
+            <multi-finder>true</multi-finder>
+            <where />
+            <order-by>ute_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list />
+          </finder>
+          <finder>
+            <name>findWhereUteIdEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_id = :uteId</where>
+            <order-by>ute_id</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteId</java-name>
+                <java-type>long</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>10</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUteNominativoEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_nominativo = :uteNominativo</where>
+            <order-by>ute_nominativo</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteNominativo</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>50</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUteEmailEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_email = :uteEmail</where>
+            <order-by>ute_email</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteEmail</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>100</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUtePasswordEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_password = :utePassword</where>
+            <order-by>ute_password</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>utePassword</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>255</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUteCfPivaEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_cf_piva = :uteCfPiva</where>
+            <order-by>ute_cf_piva</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteCfPiva</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>16</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUteProfiloEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_profilo = :uteProfilo</where>
+            <order-by>ute_profilo</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteProfilo</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>2</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUteStatoEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_stato = :uteStato</where>
+            <order-by>ute_stato</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteStato</java-name>
+                <java-type>java.lang.String</java-type>
+                <jdbc-type>VARCHAR</jdbc-type>
+                <jdbc-precision>1</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUteLastLoginEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_last_login = :uteLastLogin</where>
+            <order-by>ute_last_login</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteLastLogin</java-name>
+                <java-type>java.util.Date</java-type>
+                <jdbc-type>DATE</jdbc-type>
+                <jdbc-precision>13</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+          <finder>
+            <name>findWhereUteTentativiEquals</name>
+            <multi-finder>true</multi-finder>
+            <where>ute_tentativi = :uteTentativi</where>
+            <order-by>ute_tentativi</order-by>
+            <query-type>WHERE</query-type>
+            <parameter-list>
+              <parameter>
+                <java-name>uteTentativi</java-name>
+                <java-type>int</java-type>
+                <jdbc-type>NUMERIC</jdbc-type>
+                <jdbc-precision>2</jdbc-precision>
+                <jdbc-scale>0</jdbc-scale>
+              </parameter>
+            </parameter-list>
+          </finder>
+        </finder-list>
+      </table>
+    </table-list>
+    <view-list />
+    <procedure-list />
+    <custom-sql-list />
+  </database>
+  <provider-options>
+    <default-codegen-provider>j2se</default-codegen-provider>
+    <provider name="j2se">
+      <property key="app-name" value="logistica" />
+      <property key="dao-strategy" value="jdbc" />
+      <property key="delete-files" value="false" />
+      <property key="dto-fields-public" value="false" />
+      <property key="generate-dynamic-inserts" value="false" />
+      <property key="generate-dynamic-updates" value="false" />
+      <property key="jdbc-driver" value="org.postgresql.Driver" />
+      <property key="jdbc-pwd" value="postgres" />
+      <property key="jdbc-table-aliases" value="false" />
+      <property key="jdbc-url" value="jdbc:postgresql://localhost/logistica" />
+      <property key="jdbc-user" value="postgres" />
+      <property key="jdbc30-capable" value="true" />
+      <property key="logging" value="stdout" />
+      <property key="output-dir" value="C:\TempFolder\RepositoryGIT\logistica\Firestorm\generator" />
+      <property key="overwrite-resource-manager" value="true" />
+      <property key="package-name" value="com.inn.logistica" />
+      <property key="prefix-schema-name" value="false" />
+    </provider>
+  </provider-options>
+</firestorm-project>
+

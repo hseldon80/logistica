@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">Ricerca Movimentazioni</h3>	
+			
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+					<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2,ui-grid-col-2" styleClass="ui-panelgrid-blank ui-fluid">
+							<p:outputLabel styleClass="testo" value="Periodo dal"/>
+        					<p:calendar id="datadal" value="#{RicercaMovimentazioni.datadal}" mask="true" pattern="dd/MM/yyyy" styleClass="data" />
+
+							<p:outputLabel styleClass="testo" value="Periodo al:"/>
+	        					<p:calendar id="dataal" value="#{RicercaMovimentazioni.dataal}" mask="true" pattern="dd/MM/yyyy" styleClass="data" />
+							
+							<p:outputLabel styleClass="testo" value="Tipo:" />
+	  						<p:selectOneRadio id="tipo" value="#{RicercaMovimentazioni.tipo}">
+					            <f:selectItem itemLabel="Carico" itemValue="C" />
+					            <f:selectItem itemLabel="Scarico" itemValue="S" />
+					            <f:selectItem itemLabel="Entrambi" itemValue="E" />
+					        </p:selectOneRadio>
+
+		                	<p:outputLabel styleClass="testo" value="Articolo"/>
+	                		<p:selectOneMenu id="comboart" value="#{RicercaMovimentazioni.articoloFk}" styleClass="combo" filter="true" filterMatchMode="contains" >
+            					<f:selectItems value="#{RicercaMovimentazioni.comboarticolo}" />
+        					</p:selectOneMenu>
+
+		                	<p:outputLabel styleClass="testo" value="Cliente o Fornitore"/>
+		                	<p:selectOneMenu id="combocli" value="#{RicercaMovimentazioni.clienteFk}" styleClass="combo" filter="true" filterMatchMode="contains" >
+	            				<f:selectItems value="#{RicercaMovimentazioni.combocliente}" />
+	        				</p:selectOneMenu>
+
+					       <p:commandButton id="ajax" update="tabellaindividuale" styleClass="bottone" title="Ricerca" actionListener="#{RicercaMovimentazioni.buttonRicerca}" />
+
+					</p:panelGrid>
+  					
+  					<h:panelGrid id="tabellaindividuale" columns="1" cellpadding="5" >		     
+					<p:dataTable reflow="true" rows="100" style="margin-top:20px" 
+								id="individuale" var="lista" value="#{RicercaMovimentazioni.lstMovimenti}" >
+					        <f:facet name="header">
+					           		 Elenco movimentaizoni
+					        </f:facet>
+					        <p:column headerText="Data" sortBy="#{lista.data}" >
+					            <h:outputText value="#{lista.data}" >
+						             <f:convertDateTime pattern="dd-MM-yyyy" />
+						        </h:outputText>
+					        </p:column>
+					        <p:column headerText="Tipo" sortBy="#{lista.movtipo}" >
+					            <h:outputText value="#{lista.movtipo}" >
+						        </h:outputText>
+					        </p:column>
+					        <p:column headerText="Cliente/Fornitore" sortBy="#{lista.ragionesociale}" >
+					            <h:outputText value="#{lista.ragionesociale}" />
+					        </p:column>
+
+					        <p:column headerText="Cod. Art." sortBy="#{lista.artcodice}" >
+					            <h:outputText value="#{lista.artcodice}" />
+					        </p:column>
+
+					        <p:column headerText="Descrizione" sortBy="#{lista.artdescrizione}" >
+					            <h:outputText value="#{lista.artdescrizione}" />
+					        </p:column>
+					 
+					        <p:column headerText="Q.ta" style="width:70px;text-align: right" sortBy="#{lista.movqta}" >
+					            <h:outputText value="#{lista.movqta}" style="text-align: right" />
+					        </p:column>
+					        
+				    </p:dataTable>	
+			 		</h:panelGrid>  	
+			 </p:fieldset>
+		</h:form>
+	 </ui:define>
+</ui:composition>

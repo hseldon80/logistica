@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Gestione Aziendale</title>
+    <h:head>
+        <link rel="stylesheet" href="${request.contextPath}/css/navigation.css" type="text/css"/>        
+        
+        
+        <p:layout fullPage="true" resizeTitle="resize" style="background-color:#FFFFFF;">
+
+                <p:layoutUnit position="north" id="north" > 
+                	
+                        <ui:include src="header.xhtml" />
+                        
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" id="west" resizable="true" closable="false" collapsible="true" header="Menu" style="height:580px;overflow:hidden;" size="300">
+                       
+                        <ui:include src="menu.xhtml" />
+                       
+                </p:layoutUnit>
+                                                 
+                
+                
+                <p:layoutUnit position="south" resizable="true" id="south">
+                    	
+                        <ui:include src="footer.xhtml" />
+                     	
+                </p:layoutUnit>
+                
+                <p:layoutUnit  id="centerLayout" styleClass="layoutUnitCenter" position="center" >
+                		
+                        
+                                    
+                           <ui:insert name="content" />     
+                        
+                </p:layoutUnit>
+
+        </p:layout>
+        
+       
+    </h:head>
+
+    <h:body>
+    </h:body>
+
+</f:view>
+</html>

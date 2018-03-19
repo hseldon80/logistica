@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+		<h:form id="form">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">Completa Ordine</h3>	
+			
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+					<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2,ui-grid-col-2" styleClass="ui-panelgrid-blank ui-fluid">
+							<p:outputLabel styleClass="testo" value="Periodo dal"/>
+        					<p:calendar id="datadal" value="#{CompletaOrdine.datadal}" mask="true" pattern="dd/MM/yyyy" styleClass="data" />
+
+							<p:outputLabel styleClass="testo" value="Periodo al:"/>
+	        				<p:calendar id="dataal" value="#{CompletaOrdine.dataal}" mask="true" pattern="dd/MM/yyyy" styleClass="data" />
+							
+		                	<p:outputLabel styleClass="testo" value="Cliente"/>
+		                	<p:selectOneMenu id="combocli" value="#{CompletaOrdine.clienteFk}" styleClass="combo" filter="true" filterMatchMode="contains" >
+	            				<f:selectItems value="#{CompletaOrdine.combocliente}" />
+	        				</p:selectOneMenu>
+
+		                	<p:outputLabel styleClass="testo" value="Stato"/>
+							<p:selectOneMenu styleClass="combo" id="stato" value="#{CompletaOrdine.stato}" style="width:150px">
+				                <f:selectItem itemLabel="Tutti" itemValue="" />
+				                <f:selectItem itemLabel="Attesa" itemValue="A" />
+				                <f:selectItem itemLabel="Spedito" itemValue="S" />
+				                <f:selectItem itemLabel="In transito" itemValue="T" />
+				                <f:selectItem itemLabel="Consegnato" itemValue="C" />
+				            </p:selectOneMenu>
+
+					       <p:commandButton id="ajax" update="tabellaindividuale" styleClass="bottone" title="Ricerca" actionListener="#{CompletaOrdine.buttonRicerca}" />
+
+					</p:panelGrid>
+  					
+  					<h:panelGrid id="tabellaindividuale" columns="1" cellpadding="5" >		     
+					<p:dataTable reflow="true" rows="100" style="margin-top:20px" 
+								id="individuale" var="lista" value="#{CompletaOrdine.lstOrdini}" >
+					        <f:facet name="header">
+					           		 Elenco ordini
+					        </f:facet>
+					        <p:column headerText="Numero" sortBy="#{lista.ordNumero}" >
+					            <h:outputText value="#{lista.ordNumero}" />
+					        </p:column>
+					        <p:column headerText="Data" sortBy="#{lista.ordData}" >
+					            <h:outputText value="#{lista.ordData}" >
+						             <f:convertDateTime pattern="dd-MM-yyyy" />
+						        </h:outputText>
+					        </p:column>
+					        <p:column headerText="Cliente" sortBy="#{lista.anagraficaAnaId}" >
+					            <h:outputText converter="anagraficaConverter" value="#{lista.anagraficaAnaId}" />
+					        </p:column>
+					        <p:column headerText="Stato" sortBy="#{lista.ordStato}" >
+					            <h:outputText converter="statoConverter" value="#{lista.ordStato}" />
+					        </p:column>
+					        <p:column headerText="Cod. Spedizione" sortBy="#{lista.ordSpeNumero}" >
+					            <h:outputText value="#{lista.ordSpeNumero}" />
+					        </p:column>
+					        <p:column headerText="Corriere" sortBy="#{lista.corrieriCorId}" >
+					            <h:outputText converter="corriereConverter" value="#{lista.corrieriCorId}" />
+					        </p:column>
+
+					        <p:column headerText="" style="width:70px;">
+					        	<p:commandButton styleClass="bottone" title="Vai al dettaglio" icon="ui-icon-plusthick" actionListener="#{CompletaOrdine.buttonDettaglio(lista)}" 
+					        	update="form:dlgOrdiniUpdate" />
+					        </p:column>
+					        
+				    </p:dataTable>	
+			 		</h:panelGrid>  	
+			 </p:fieldset>
+			 
+
+<!--  ****************************************************  -->
+
+		   	<p:dialog id="dlgOrdiniUpdate" header="Completa dettagli ordine" widgetVar="dlgOrdiniUpdate" modal="false" height="100%">
+	    		<p:messages id="messagesD" showDetail="true" autoUpdate="true" closable="true" /> 
+	    		
+	    		<h:panelGrid id="tabellaD2" columns="2" cellpadding="5">		            
+			           
+			            <h:outputLabel value="Numero:" />
+			            <h:outputLabel  style="font-weight:bold" value="#{CompletaOrdine.ordineSelezionato.ordNumero}" />
+
+			            <h:outputLabel value="Data:" />
+			            <h:outputLabel style="font-weight:bold" value="#{CompletaOrdine.ordineSelezionato.ordData}" >
+			             	<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputLabel>
+						
+			            <h:outputLabel value="Cliente:" />
+			            <h:outputLabel style="font-weight:bold" value="#{CompletaOrdine.ordineSelezionato.anagraficaAnaId}" 
+			            converter="anagraficaConverter" />
+
+			            <h:outputLabel value="Stato:" />
+			            <h:outputText style="font-weight:bold" converter="statoConverter" value="#{CompletaOrdine.ordineSelezionato.ordStato}" />
+
+			            <h:outputLabel value="Numero Spedizione:" />
+			            <h:outputText style="font-weight:bold" value="#{CompletaOrdine.ordineSelezionato.ordSpeNumero}" />
+
+			            <h:outputLabel value="Data Spedizione:" />
+			            <h:outputText style="font-weight:bold" value="#{CompletaOrdine.ordineSelezionato.ordSpedData}" >
+			             	<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+
+			            <h:outputLabel value="Corriere:" />
+					    <p:selectOneMenu id="combocor" value="#{CompletaOrdine.corriereFk}" styleClass="combo" filter="true" filterMatchMode="contains" >
+	            				<f:selectItems value="#{CompletaOrdine.combocorriere}" />
+	        			</p:selectOneMenu>
+
+	            </h:panelGrid>
+	           
+		    	<h:panelGrid id="riepilogo3" columns="2" cellpadding="5">
+		        	<p:commandButton value="Salva" icon="ui-icon-document" action="#{CompletaOrdine.buttonSalvaDettaglio}" styleClass="ui-priority-primary" update="tabellaindividuale" />					            	
+		            <p:commandButton value="Annulla" icon="ui-icon-document" action="#{CompletaOrdine.buttonRifiutaDettaglio}" styleClass="ui-priority-primary" update="tabellaindividuale" />
+		        </h:panelGrid>	
+		    		
+		     </p:dialog> 	
+			 
+			 
+		</h:form>
+	 </ui:define>
+</ui:composition>

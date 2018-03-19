@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+	<h:form id="form">
+				
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">Dati Personali</h3>	
+			
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+			
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+
+	                	<p:outputLabel styleClass="testo" value="Ragione Sociale:"/>
+						<p:outputLabel styleClass="testo" value="#{SessionBean1.ragionesociale}" />
+	                	
+	                	<p:outputLabel styleClass="testo" value="Partita IVA/CF:"/>
+						<p:outputLabel styleClass="testo" value="#{SessionBean1.piva}" />
+						
+						<p:outputLabel styleClass="testo" value="Indirizzo e-mail:"/>
+						<p:outputLabel styleClass="testo" value="#{SessionBean1.email}" />
+    					
+					</p:panelGrid>
+  					
+			 </p:fieldset>
+
+			 <p:fieldset legend="Cambio Password" styleClass="fieldset" style="margin-top:20px" toggleable="true" toggleSpeed="500" >
+
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+			 			<p:outputLabel styleClass="testo" value="Vecchia password"/>
+						<p:password  id="old" value="#{DatiPersonali.oldpassword}" />
+
+			 			<p:outputLabel styleClass="testo" value="Nuova password"/>
+						<p:password  id="new1" value="#{DatiPersonali.newpassword}" feedback="true" />
+
+			 			<p:outputLabel styleClass="testo" value="Conferma password"/>
+						<p:password  id="new2" value="#{DatiPersonali.confpassword}" />
+					
+						<p:commandButton styleClass="bottone" title="Conferma" actionListener="#{DatiPersonali.buttonSalva}" />
+					</p:panelGrid>
+			 	
+			 </p:fieldset>
+		</h:form>
+	 </ui:define>
+</ui:composition>

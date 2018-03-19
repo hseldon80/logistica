@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="templates/template.xhtml">
+	
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputStylesheet library="css" name="navigation.css" />
+		<h:outputStylesheet library="js" name="locale.js" />
+	<h:form id="form">
+				
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+			
+			<h3 style="margin-top:0">Registrazione Cliente</h3>	
+			
+			<p:fieldset styleClass="fieldset" style="margin-top:20px">		
+			
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+
+	                	<p:outputLabel styleClass="testo" value="Partita IVA"/>
+						<p:inputText value="#{RegistrazioneCliente.piva}" />
+						
+						<p:outputLabel styleClass="testo" value="Indirizzo e-mail"/>
+						<p:inputText id="email" value="#{RegistrazioneCliente.email}" />
+						
+						<p:outputLabel styleClass="check" value="Consenso al trattamento dei dati"/>
+    					<p:selectBooleanCheckbox value="#{RegistrazioneCliente.consenso}" />
+    					
+					</p:panelGrid>
+  					
+			 </p:fieldset>
+			<p:panelGrid columns="1" columnClasses="ui-grid-col-2,ui-grid-col-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+				
+      	        <p:commandButton id="salva" ajax="false" styleClass="bottone" title="Invia registrazione"  actionListener="#{RegistrazioneCliente.buttonSalva}" />
+      	        	
+			</p:panelGrid>
+			 
+		</h:form>
+	 </ui:define>
+</ui:composition>
