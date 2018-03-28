@@ -110,6 +110,14 @@ calls to this DAO, otherwise a new Connection will be allocated for each operati
 			// get the user-specified connection or get a connection from the ResourceManager
 			conn = isConnSupplied ? userConn : ResourceManager.getConnection();
 		
+			stmt = conn.prepareStatement( "SELECT nextval('seq_anagrafiche')" );
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				dto.setAnaId( rs.getLong( 1 ) );
+				rs.close();
+				stmt.close();
+			}
+		
 			stmt = conn.prepareStatement( SQL_INSERT );
 			int index = 1;
 			stmt.setLong( index++, dto.getAnaId() );

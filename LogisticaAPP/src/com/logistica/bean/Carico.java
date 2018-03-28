@@ -1,6 +1,8 @@
 package com.logistica.bean;
 
+import java.io.InputStream;
 import java.sql.Connection;
+
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -45,6 +47,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import com.logistica.utility.PropertyReader;
 
 @ManagedBean(name = "Carico")
 @ViewScoped
@@ -184,12 +187,13 @@ public class Carico extends Pagina {
 			
 			salvaOnDB();
 			
-			stampaEtichette();
+			// stampaEtichette();
 			
-			return "Home.xhtml";
+			initComponent();
+			
 		} 
-		else 
-			return null;
+		
+		return null;
 	}
 	
 	private void salvaOnDB() {
@@ -253,7 +257,6 @@ public class Carico extends Pagina {
 			if (conn!=null) ResourceManager.close(conn);
 		}	
 		
-		
 		if (esito == 0) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 	                 "Si è verificato un errore nella registrazione della movimentazione",
@@ -265,7 +268,6 @@ public class Carico extends Pagina {
 	                 "Registrazione effettata con successo",
 					   "Informazione!"));
 			
-			initComponent();
 		}
 		
 	}
@@ -286,22 +288,28 @@ public class Carico extends Pagina {
 			conn = ResourceManager.getConnection();
 			
 			HashMap<String,Object> reportParams = new HashMap<String,Object>();
-			// String templatePath = "/Report/BarCode.jasper";  
-			String templatePath = "/TempFolder/RepositoryGIT/logistica/LogisticaAPP/WebContent/Report/BarCode.jasper";
+			String templatePath = "/Report/BarCode.jasper";  
+			//String templatePath = "/TempFolder/RepositoryGIT/logistica/LogisticaAPP/WebContent/Report/BarCode.jasper";
 			
 			reportParams.put("artId", articoloFk );
 			
 			JasperPrint jp;
-
-			jp = JasperFillManager.fillReport(templatePath, reportParams, conn);
+			
+			FacesContext.getCurrentInstance().responseComplete();
+			InputStream template = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream(templatePath);
+			
+			jp = JasperFillManager.fillReport(template, reportParams, conn);
 		   	
 			PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
 			
 		    // printRequestAttributeSet.add(MediaSizeName.ISO_A4); //setting page size
 		    printRequestAttributeSet.add(new Copies(qta));
 
-		    PrinterName printerName = new PrinterName("CID Samsung Corridoio", null); //gets printer 
-
+		    String labelPrinterName = PropertyReader.getInstance().getProperty("LABEL_PRINTER");
+		    
+		    PrinterName printerName = new PrinterName(labelPrinterName, null);
+		    
+		    
 		    PrintServiceAttributeSet printServiceAttributeSet = new HashPrintServiceAttributeSet();
 		    printServiceAttributeSet.add(printerName);
 
@@ -314,11 +322,6 @@ public class Carico extends Pagina {
 		    exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
 		    exporter.exportReport();
 			
-			//String printFileName = null;
-			// printFileName = JasperFillManager.fillReportToFile(templatePath, reportParams, conn);
-			//JasperPrintManager.printReport( printFileName, true);
-
-
 		} catch (Throwable t){
 			t.printStackTrace(); 
 		}

@@ -5,13 +5,26 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:p="http://primefaces.org/ui"
         xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:form id="formHeader">        
         <div id="topBar" >
         	<div id="sinistra">
-        	    
         	</div>
         	<div id="centro"></div>
         	<div id="destra" style="text-align: center;">
         		<p:graphicImage style="width:100%; height: auto; border-radius:10px" id="tab2Img" value="/resources/images/logo.png" />  
         	</div>
         </div>
+        <div id="Menu" >
+        	<p:tabMenu activeIndex="#{param.i}">
+		    	<p:menuitem value="Carico" outcome="carico" icon="ui-icon-star"> 
+		    	 	<f:param name="i" value="0" />
+		    	</p:menuitem>
+		    	<p:menuitem value="Scarico" outcome="scarico" icon="ui-icon-star">
+		    		<f:param name="i" value="1" />
+		    	</p:menuitem>
+			</p:tabMenu>
+        </div>
+	</h:form>
+	
 </ui:composition>

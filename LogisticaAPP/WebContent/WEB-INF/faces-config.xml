@@ -7,32 +7,22 @@
 <navigation-rule>
     <from-view-id>*</from-view-id>
     <navigation-case>
-        <from-outcome>Home</from-outcome>
+        <from-outcome>home</from-outcome>
         <to-view-id>/Home.xhtml</to-view-id>
         <redirect/>
     </navigation-case>    
-    <navigation-case>
-        <from-outcome></from-outcome>
-        <to-view-id>/Home.xhtml</to-view-id>
-        <redirect/>
-    </navigation-case>
-  
-</navigation-rule>
-
-<navigation-rule>
-	    <from-view-id>/Home.xhtml</from-view-id>   
-	    <navigation-case>
+	<navigation-case>
 	        <from-outcome>carico</from-outcome>
 	        <to-view-id>/Carico.xhtml</to-view-id>
 	        <redirect/>
-	    </navigation-case>
-	    <navigation-case>
+	</navigation-case>
+	<navigation-case>
 	        <from-outcome>scarico</from-outcome>
 	        <to-view-id>/Scarico.xhtml</to-view-id>
 	        <redirect/>
-	    </navigation-case>
-</navigation-rule>	
-
+	</navigation-case>
+</navigation-rule>
+ 
 <application>
    <action-listener>org.primefaces.application.DialogActionListener</action-listener>
    <navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>

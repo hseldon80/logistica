@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"  
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Logistica</title>
+    <h:head>    	
+		<link href="${request.contextPath}/resources/css/responsive.css" rel="stylesheet" type="text/css"/>		  
+		<link href="${request.contextPath}/resources/css/stylesheet.css" rel="stylesheet" type="text/css"/>
+		<link href="${request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css"/>		
+		<link href="${request.contextPath}/resources/css/navigation.css" rel="stylesheet" type="text/css"/>  
+		<!-- link type="image/x-icon" href="${request.contextPath}/resources/images/favicon.ico" rel="shortcut icon" /-->
+    </h:head> 
+ 
+    <h:body>        	
+    	<div class="ui-g" style="width:100%;">
+				<p:graphicImage style="width:100%; height: auto; border-radius:10px" id="tab2Img" value="/resources/images/logo.png" />
+		</div>
+    
+    	<h:form id="loginForm">
+		<p:growl id="msg" showDetail="true" life="4000" /> 
+		<div class="ui-g" style="width:100%;">
+			<div class="ui-g-12 ui-md-4"/>
+			<div class="ui-g-12 ui-md-4 ui-g-nopad">	
+				<p:panel id="loginPnl" styleClass="customTitleBar" header="Login" style="width: 100%; margin: 0 auto;">
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<p:outputLabel styleClass="testo" for="username" value="E-mail"/>
+						<p:inputText id="username" value="#{Login.email}"></p:inputText>
+						<p:spacer /><p:spacer />							
+						<p:outputLabel styleClass="testo" for="password" value="Password"/>
+						<p:password id="password" value="#{Login.password}"
+							feedback="false"></p:password>
+						<p:message for="password"></p:message>
+					</p:panelGrid>
+					<p:panelGrid columns="4" columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4,ui-grid-col-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" >
+						<p:outputLabel value=""/>
+						<p:outputLabel value=""/>
+						<p:outputLabel value=""/>
+						<p:commandButton styleClass="bottone" id="loginButton" value="Login" action="#{Login.login}" update="loginForm" ajax="true" style="float: right;">
+						</p:commandButton>
+					</p:panelGrid>
+				</p:panel>
+				<p:blockUI block="loginPnl" trigger="loginButton" style="float:right;">
+					<p:graphicImage value="/resources/images/loading.gif" />
+				</p:blockUI>				
+			</div>
+			<div class="ui-g-12 ui-md-4"/>
+		</div>
+		</h:form>
+    </h:body>
+
+</f:view>
+</html>
+

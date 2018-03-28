@@ -52,9 +52,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_anagrafiche</sequence-name>
           </column>
           <column>
             <java-name>anaRagioneSociale</java-name>
@@ -239,9 +239,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_articoli</sequence-name>
           </column>
           <column>
             <java-name>artCodice</java-name>
@@ -456,9 +456,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_anagrafiche</sequence-name>
           </column>
           <column>
             <java-name>corNominativo</java-name>
@@ -630,9 +630,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_movimenti</sequence-name>
           </column>
           <column>
             <java-name>movData</java-name>
@@ -865,9 +865,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_movimenti</sequence-name>
           </column>
           <column>
             <java-name>mvdQta</java-name>
@@ -1086,9 +1086,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_ordini</sequence-name>
           </column>
           <column>
             <java-name>ordData</java-name>
@@ -1457,9 +1457,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_ordini</sequence-name>
           </column>
           <column>
             <java-name>odeQta</java-name>
@@ -1646,9 +1646,9 @@
             <jdbc-precision>10</jdbc-precision>
             <jdbc-scale>0</jdbc-scale>
             <nullable>false</nullable>
-            <unique>false</unique>
+            <unique>true</unique>
             <auto-increment>false</auto-increment>
-            <sequence-name />
+            <sequence-name>seq_anagrafiche</sequence-name>
           </column>
           <column>
             <java-name>uteNominativo</java-name>
@@ -1955,8 +1955,8 @@
       <property key="jdbc-user" value="postgres" />
       <property key="jdbc30-capable" value="true" />
       <property key="logging" value="stdout" />
-      <property key="output-dir" value="C:\TempFolder\RepositoryGIT\logistica\Firestorm\generator" />
-      <property key="overwrite-resource-manager" value="true" />
+      <property key="output-dir" value="C:\TempFolder\RepositoryLavoro\logistica\Firestorm\generator" />
+      <property key="overwrite-resource-manager" value="false" />
       <property key="package-name" value="com.inn.logistica" />
       <property key="prefix-schema-name" value="false" />
     </provider>

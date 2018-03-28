@@ -15,10 +15,11 @@ public class SessionBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 8648296423980941950L;
 
-	private int utente = 0;
-	private String ragionesociale ="Ragione Sociale 1"; 
-	private String piva ="PIVA";
-	private String email ="email@email.it";
+	private int utente = -1;
+	private String ragionesociale = ""; 
+	private String piva ="";
+	private String email ="";
+	private int ruolo = -1;
 	
 	public SessionBean() {
 		
@@ -62,7 +63,13 @@ public class SessionBean implements Serializable {
 		this.email = email;
 	}
 
+	public int getRuolo() {
+		return ruolo;
+	}
 
+	public void setRuolo(int ruolo) {
+		this.ruolo = ruolo;
+	}
 
 	// fine classe
 	

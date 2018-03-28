@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"  
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>My Secret Wish</title>
+    <h:head>    	
+		<link href="${request.contextPath}/resources/css/responsive.css" rel="stylesheet" type="text/css"/>		  
+		<link href="${request.contextPath}/resources/css/stylesheet.css" rel="stylesheet" type="text/css"/>
+		<link href="${request.contextPath}/css/navigation.css" rel="stylesheet" type="text/css"/>  
+    </h:head>
+ 
+    <h:body>        	
+  			<div class="ui-g" style="width:100%;">
+				<p:graphicImage style="width:100%; height: auto; border-radius:10px" id="tab2Img" value="/resources/images/logo.png" />
+			</div>
+			<div class="ui-g" style="width:100%;padding-top: 0px;padding-bottom: 0px;">
+				<div class="ui-g-12 ui-md-6 ui-lg-3"><p:outputLabel rendered="#{sessionBean1.utente_business == 1}" styleClass="testoSx" value="Struttura : #{sessionBean1.nomeStruttura} " /></div>
+    			<div class="ui-g-12 ui-md-6 ui-lg-3"></div>
+    			<div class="ui-g-12 ui-md-6 ui-lg-3" style="text-align: right !important;"></div>    			
+    			<div class="ui-g-12 ui-md-6 ui-lg-3" style="text-align: right !important;">
+    			  
+  			  </div>
+			</div> 
+			<div style="width:100%;text-align:center">  
+				<p:graphicImage value="/resources/images/error-page-401.png" />
+	        </div>
+    </h:body>
+
+</f:view>
+</html>

@@ -42,7 +42,7 @@
     <param-value>server</param-value>
   </context-param>
   <welcome-file-list>
-    <welcome-file>Home.xhtml</welcome-file>
+    <welcome-file>Login.xhtml</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
@@ -54,6 +54,30 @@
     <url-pattern>/faces/*</url-pattern>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  
+  <filter>
+    <description>Filtro di autorizzazione</description>
+    <filter-name>Filtro</filter-name>
+    <filter-class>com.logistica.filter.Filtro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Filtro</filter-name>
+    <url-pattern>*.xhtml</url-pattern>
+    <url-pattern>*.co</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Filtro</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
+  
+  
+  
+  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>All resources</web-resource-name>

@@ -11,6 +11,11 @@
         <to-view-id>/Home.xhtml</to-view-id>
         <redirect/>
     </navigation-case>
+    <navigation-case>
+        <from-outcome>HomeCliente</from-outcome>
+        <to-view-id>/HomeCliente.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
 </navigation-rule>
 
 <application>

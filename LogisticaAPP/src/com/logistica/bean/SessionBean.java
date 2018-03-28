@@ -15,8 +15,8 @@ public class SessionBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 8648296423980941950L;
 
-	private int utente_business = 0;
-	private String nomeStruttura ="Nome Struttura"; 
+	private int utente_business = -1;
+	private String nomeStruttura = "Nome Struttura"; 
 	private String nomeUtente =""; 
 	
 	public SessionBean() {
